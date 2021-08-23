@@ -15,7 +15,13 @@ class Curl extends Base {
 	 * The curl http client
 	 * @var string
 	 */
-	protected $id = 'curl';
+	protected $id = 'cURL';
+
+	/**
+	 * The current version
+	 * @var string
+	 */
+	protected $version = '10';
 
 	/**
 	 * HTTP GET implementation
@@ -41,7 +47,7 @@ class Curl extends Base {
 
 		$response = curl_exec( $ch );
 		curl_close( $ch );
-		$response = @json_decode( $response, true );
+		$response = $this->json_decode( $response );
 		if ( false === $response ) {
 			return new Error( curl_errno( $ch ), curl_error( $ch ), array() );
 		}
@@ -75,7 +81,7 @@ class Curl extends Base {
 		}
 
 		curl_setopt( $ch, CURLOPT_URL, $this->url( $path ) );
-		curl_setopt( $ch, CURLOPT_POSTFIELDS, $data );
+		curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query($data) );
 		curl_setopt( $ch, CURLOPT_USERAGENT, $this->user_agent );
 		curl_setopt( $ch, CURLOPT_TIMEOUT, $this->timeout );
 		curl_setopt( $ch, CURLOPT_USERPWD, $this->consumer_key . ":" . $this->consumer_secret );
@@ -83,6 +89,7 @@ class Curl extends Base {
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
 		curl_setopt( $ch, CURLOPT_FAILONERROR, 0 );
 		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, array( 'Content-Type: application/x-www-form-urlencoded' ) );
 		curl_setopt( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
 
 		$response = curl_exec( $ch );
@@ -90,6 +97,8 @@ class Curl extends Base {
 		if ( false === $response ) {
 			return new Error( curl_errno( $ch ), curl_error( $ch ) );
 		}
+
+		$response = $this->json_decode( $response );
 
 		return $this->result( $response );
 
@@ -106,9 +115,6 @@ class Curl extends Base {
 	 */
 	public function put( $path, $data = array(), $files = array() ) {
 
-		@set_time_limit( 450 );
-		$ch = curl_init();
-
 		if ( ! empty( $files ) ) {
 			foreach ( $files as $key => $file ) {
 				if ( file_exists( $file ) ) {
@@ -117,8 +123,11 @@ class Curl extends Base {
 			}
 		}
 
+		@set_time_limit( 450 );
+		$ch = curl_init();
+
 		curl_setopt( $ch, CURLOPT_URL, $this->url( $path ) );
-		curl_setopt( $ch, CURLOPT_POSTFIELDS, $data );
+		curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query($data) );
 		curl_setopt( $ch, CURLOPT_USERAGENT, $this->user_agent );
 		curl_setopt( $ch, CURLOPT_TIMEOUT, $this->timeout );
 		curl_setopt( $ch, CURLOPT_USERPWD, $this->consumer_key . ":" . $this->consumer_secret );
@@ -126,6 +135,7 @@ class Curl extends Base {
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
 		curl_setopt( $ch, CURLOPT_FAILONERROR, 0 );
 		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, array( 'Content-Type: application/x-www-form-urlencoded' ) );
 		curl_setopt( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1 );
 
 		$response = curl_exec( $ch );
@@ -133,6 +143,7 @@ class Curl extends Base {
 		if ( false === $response ) {
 			return new Error( curl_errno( $ch ), curl_error( $ch ) );
 		}
+		$response = $this->json_decode( $response );
 
 		return $this->result( $response );
 	}
@@ -163,6 +174,8 @@ class Curl extends Base {
 		if ( false === $response ) {
 			return new Error( curl_errno( $ch ), curl_error( $ch ) );
 		}
+
+		$response = $this->json_decode( $response );
 
 		return $this->result( $response );
 
@@ -204,7 +217,6 @@ class Curl extends Base {
 
 			return true;
 		}
-
 	}
 
 
@@ -214,7 +226,6 @@ class Curl extends Base {
 	 */
 	public function is_supported() {
 		return function_exists( 'curl_version' );
-
 	}
 
 

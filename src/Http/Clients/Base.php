@@ -88,6 +88,22 @@ abstract class Base {
 	}
 
 	/**
+	 * Decodes JSON
+	 *
+	 * @param $data
+	 *
+	 * @return mixed|null
+	 */
+	protected function json_decode($data) {
+		$response = json_decode($data, true);
+		if( json_last_error() === JSON_ERROR_NONE ) {
+			return $response;
+		} else {
+			return false;
+		}
+	}
+
+	/**
 	 * HTTP GET implementation
 	 *
 	 * @param $path

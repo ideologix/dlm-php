@@ -12,7 +12,13 @@ class WP extends Base {
 	 * The WP http client
 	 * @var string
 	 */
-	protected $id = 'wp';
+	protected $id = 'WP';
+
+	/**
+	 * The version
+	 * @var string
+	 */
+	protected $version = '10';
 
 	/**
 	 * HTTP GET implementation

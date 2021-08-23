@@ -10,6 +10,10 @@ use IdeoLogix\DigitalLicenseManagerClient\Http\Clients\Base as BaseClient;
  */
 abstract class Base {
 
+	/**
+	 * The Http Client
+	 * @var BaseClient
+	 */
 	protected $http;
 
 	/**
@@ -20,5 +24,4 @@ abstract class Base {
 	public function __construct( $httpClient ) {
 		$this->http = $httpClient;
 	}
-
 }

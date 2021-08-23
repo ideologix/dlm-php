@@ -3,13 +3,13 @@
 namespace IdeoLogix\DigitalLicenseManagerClient\Http\Requests;
 
 use IdeoLogix\DigitalLicenseManagerClient\Http\Responses\Base as HttpResponse;
-use IdeoLogix\DigitalLicenseManagerClient\Http\Requests\Base as BaseRequests;
+use IdeoLogix\DigitalLicenseManagerClient\Http\Requests\Base as BaseRequest;
 
 /**
  * Class Licenses
  * @package IdeoLogix\DigitalLicenseManagerClient\Http\Requests
  */
-class Licenses extends BaseRequests {
+class Licenses extends BaseRequest {
 
 	/**
 	 * Return the list of the licenses
@@ -41,7 +41,7 @@ class Licenses extends BaseRequests {
 	 * @return HttpResponse
 	 */
 	public function create( $data = array() ) {
-		return $this->http->post( $data );
+		return $this->http->post( "wp-json/dlm/v1/licenses", $data );
 	}
 
 	/**
@@ -53,7 +53,7 @@ class Licenses extends BaseRequests {
 	 * @return HttpResponse
 	 */
 	public function update( $license_key, $data = array() ) {
-
+		return $this->http->put("wp-json/dlm/v1/licenses/{$license_key}", $data);
 	}
 
 	/**
