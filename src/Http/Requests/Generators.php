@@ -52,19 +52,30 @@ class Generators extends Base {
 	 * @return HttpResponse
 	 */
 	public function update( $generator_id, $data = array() ) {
-		return $this->http->put("wp-json/dlm/v1/generators/{$generator_id}", $data);
+		return $this->http->put( "wp-json/dlm/v1/generators/{$generator_id}", $data );
 	}
 
 	/**
-	 * Update resource
+	 * Delete resource
 	 *
-	 * @param $license_key
+	 * @param $generator_id
+	 *
+	 * @return HttpResponse
+	 */
+	public function delete( $generator_id ) {
+		return $this->http->put( "wp-json/dlm/v1/generators/{$generator_id}" );
+	}
+
+	/**
+	 * Generate resources
+	 *
+	 * @param $generator_id
 	 * @param array $data
 	 *
 	 * @return HttpResponse
 	 */
 	public function generate( $generator_id, $data = array() ) {
-		return $this->http->post("wp-json/dlm/v1/generators/{$generator_id}", $data);
+		return $this->http->post( "wp-json/dlm/v1/generators/{$generator_id}/generate", $data );
 	}
 
 }
