@@ -9,16 +9,21 @@ namespace IdeoLogix\DigitalLicenseManagerClient\Http\Requests;
 class Software extends Base {
 
 	/**
-	 * Software info
+	 * Find a software item in the database
+	 *
+	 * @param $software_id
+	 *
+	 * @return \IdeoLogix\DigitalLicenseManagerClient\Http\Responses\Base
 	 */
-	public function info( $software_id ) {
-
+	public function find( $software_id ) {
+		return $this->http->get( "wp-json/dlm/v1/software/{$software_id}" );
 	}
 
 	/**
-	 * Download software
+	 * Retrieve the contents of a software file from the licensing server
+	 * @return string
 	 */
-	public function download( $activation_token ) {
+	public function download_latest($activation_token) {
 
 	}
 
