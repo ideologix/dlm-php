@@ -161,4 +161,20 @@ abstract class Base {
 	 */
 	abstract public function is_supported();
 
+	/**
+	 * Return consumer key
+	 * @return string
+	 */
+	public function get_consumer_key() {
+		return $this->consumer_key;
+	}
+
+	/**
+	 * Return consumer secret
+	 * @return string
+	 */
+	public function get_consumer_secret() {
+		return $this->consumer_secret;
+	}
+
 }

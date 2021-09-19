@@ -221,6 +221,9 @@ class Curl extends Base
             return new Error($curl_errno, $curl_error);
         } else {
             $fp = fopen($save_path, 'w+');
+            if(!is_writable($save_path)) {
+            	return new Error('400', 'The provided path is not writable.');
+            }
             fwrite($fp, $response);
             fclose($fp);
             curl_close($ch);
