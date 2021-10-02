@@ -1,6 +1,6 @@
 {
-  "name": "ideologix/dlm-php",
-  "description": "PHP client for the Digital Licnese Manager plugin to access it's REST APIs.",
+  "name": "ideologix/dlm-wordpress-updater",
+  "description": "PHP WordPress updater for your plugins and themes that utilizes the Digital License Manager PRO REST APIs",
   "license": "GPL-2.0-or-later",
   "authors": [
     {
