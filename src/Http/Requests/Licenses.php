@@ -11,6 +11,40 @@ use IdeoLogix\DigitalLicenseManagerClient\Http\Requests\Base as BaseRequest;
  */
 class Licenses extends BaseRequest
 {
+	/**
+	 * Enumerator value used for sold licenses.
+	 *
+	 * @var int
+	 */
+	const STATUS_SOLD = 1;
+
+	/**
+	 * Enumerator value used for delivered licenses.
+	 *
+	 * @var int
+	 */
+	const STATUS_DELIVERED = 2;
+
+	/**
+	 * Enumerator value used for active licenses.
+	 *
+	 * @var int
+	 */
+	const STATUS_ACTIVE = 3;
+
+	/**
+	 * Enumerator value used for inactive licenses.
+	 *
+	 * @var int
+	 */
+	const STATUS_INACTIVE = 4;
+
+	/**
+	 * Enumerator value used for disabled licenses.
+	 *
+	 * @var int
+	 */
+	const STATUS_DISABLED = 5;
 
     /**
      * Return the list of the licenses

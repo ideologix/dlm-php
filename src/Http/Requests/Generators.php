@@ -63,7 +63,7 @@ class Generators extends Base {
 	 * @return HttpResponse
 	 */
 	public function delete( $generator_id ) {
-		return $this->http->put( "wp-json/dlm/v1/generators/{$generator_id}" );
+		return $this->http->delete( "wp-json/dlm/v1/generators/{$generator_id}" );
 	}
 
 	/**

@@ -46,12 +46,4 @@ class Result extends Base {
 	public function is_success() {
 		return (bool) $this->success;
 	}
-
-	/**
-	 * Returns the data
-	 * @return array
-	 */
-	public function get_data() {
-		return $this->data;
-	}
 }
