@@ -283,7 +283,6 @@ class Curl extends Base
             $data    = isset($result['data']) ? $result['data'] : array();
             return new Error($code, $message, $data);
         }
-
     }
 
 }

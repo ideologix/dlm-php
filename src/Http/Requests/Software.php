@@ -1,8 +1,6 @@
 <?php
 
 namespace IdeoLogix\DigitalLicenseManagerClient\Http\Requests;
-use IdeoLogix\DigitalLicenseManagerClient\Http\Responses\Base as BaseResponse;
-use IdeoLogix\DigitalLicenseManagerClient\Http\Responses\Error;
 
 /**
  * Class Software
@@ -23,11 +21,16 @@ class Software extends Base {
 
 	/**
 	 * Retrieve the contents of a software file from the licensing server
-	 * @return bool|Error
+	 *
+	 * @param $activation_token
+	 * @param $path_to_save
+	 *
+	 * @return string
 	 */
-	public function download_latest( $token, $save_path ) {
-		$url = sprintf('wp-json/dlm/v1/software/download/%s?consumer_key=%s&consumer_secret=%s', $token, $this->http->get_consumer_key(), $this->http->get_consumer_secret());
-		return $this->http->download($url, $save_path);
+	public function download_latest( $activation_token, $path_to_save ) {
+		$url = sprintf( 'wp-json/dlm/v1/software/download/%s?consumer_key=%s&consumer_secret=%s', $activation_token, $this->http->get_consumer_key(), $this->http->get_consumer_secret() );
+
+		return $this->http->download( $url, $path_to_save );
 	}
 
 }
