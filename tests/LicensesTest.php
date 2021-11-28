@@ -70,6 +70,8 @@ class LicensesTest extends BaseTestCase {
 		$this->assertIsBool( count( $response->get_data() ) >= 1 );
 
 		// 5. ACTIVATE
+		// (NOTE: This requires the hard validation turned off. Eg:
+		// add_filter('dlm_rest_api_license_activation_require_software_param', '__return_false');
 		$response1 = $this->getInstance()->activate( $key, [ 'label' => 'site1.com' ] );
 		$this->assertNotTrue( $response1->is_error() );
 		$token1    = $response1->get_data( 'token' );

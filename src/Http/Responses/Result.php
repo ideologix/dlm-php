@@ -46,4 +46,12 @@ class Result extends Base {
 	public function is_success() {
 		return (bool) $this->success;
 	}
+
+	/**
+	 * Return the local path
+	 * @return mixed|null
+	 */
+	public function get_path() {
+		return isset( $this->data['path'] ) ? $this->data['path'] : null;
+	}
 }

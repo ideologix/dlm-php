@@ -148,12 +148,13 @@ abstract class Base {
 	 * Download specific url to file path
 	 *
 	 * @param $path
-	 * @param $save_path
+	 * @param $save_dir
+	 * @param null $save_filename
 	 * @param array $data
 	 *
-	 * @return string
+	 * @return string|BaseResponse
 	 */
-	abstract public function download( $path, $save_path, $data = array() );
+	abstract public function download( $path, $save_dir, $save_filename = null,  $data = array() );
 
 	/**
 	 * Is supported?

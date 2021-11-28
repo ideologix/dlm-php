@@ -3,7 +3,7 @@
 namespace IdeoLogix\DigitalLicenseManagerClient;
 
 use IdeoLogix\DigitalLicenseManagerClient\Http\Clients\Base as BaseHttpClient;
-use IdeoLogix\DigitalLicenseManagerClient\Http\Clients\Curl;
+use IdeoLogix\DigitalLicenseManagerClient\Http\Clients\Standard;
 use IdeoLogix\DigitalLicenseManagerClient\Http\Requests\Generators;
 use IdeoLogix\DigitalLicenseManagerClient\Http\Requests\Licenses;
 use IdeoLogix\DigitalLicenseManagerClient\Http\Requests\Software;
@@ -25,7 +25,7 @@ class Service {
 	 * @var string[]
 	 */
 	private $http_clients = array(
-		Curl::class
+		Standard::class
 	);
 
 	/**

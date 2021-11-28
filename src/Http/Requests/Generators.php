@@ -2,13 +2,15 @@
 
 namespace IdeoLogix\DigitalLicenseManagerClient\Http\Requests;
 
+use IdeoLogix\DigitalLicenseManagerClient\Http\Interfaces\Resource;
 use IdeoLogix\DigitalLicenseManagerClient\Http\Responses\Base as HttpResponse;
+use IdeoLogix\DigitalLicenseManagerClient\Http\Requests\Base as BaseRequest;
 
 /**
  * Class Generators
  * @package IdeoLogix\DigitalLicenseManagerClient\Http\Requests
  */
-class Generators extends Base {
+class Generators extends BaseRequest implements Resource {
 
 	/**
 	 * Return list of resources
@@ -24,12 +26,13 @@ class Generators extends Base {
 	/**
 	 *  Find resource
 	 *
-	 * @param $license_key
+	 * @param $id
+	 * @param array $args
 	 *
 	 * @return HttpResponse
 	 */
-	public function find( $generator_id ) {
-		return $this->http->get( "wp-json/dlm/v1/generators/{$generator_id}" );
+	public function find( $id, $args = array() ) {
+		return $this->http->get( "wp-json/dlm/v1/generators/{$id}", $args );
 	}
 
 	/**
@@ -46,36 +49,36 @@ class Generators extends Base {
 	/**
 	 * Update resource
 	 *
-	 * @param $generator_id
+	 * @param $id
 	 * @param array $data
 	 *
 	 * @return HttpResponse
 	 */
-	public function update( $generator_id, $data = array() ) {
-		return $this->http->put( "wp-json/dlm/v1/generators/{$generator_id}", $data );
+	public function update( $id, $data = array() ) {
+		return $this->http->put( "wp-json/dlm/v1/generators/{$id}", $data );
 	}
 
 	/**
 	 * Delete resource
 	 *
-	 * @param $generator_id
+	 * @param $id
 	 *
 	 * @return HttpResponse
 	 */
-	public function delete( $generator_id ) {
-		return $this->http->delete( "wp-json/dlm/v1/generators/{$generator_id}" );
+	public function delete( $id ) {
+		return $this->http->delete( "wp-json/dlm/v1/generators/{$id}" );
 	}
 
 	/**
 	 * Generate resources
 	 *
-	 * @param $generator_id
+	 * @param $id - The generator ID
 	 * @param array $data
 	 *
 	 * @return HttpResponse
 	 */
-	public function generate( $generator_id, $data = array() ) {
-		return $this->http->post( "wp-json/dlm/v1/generators/{$generator_id}/generate", $data );
+	public function generate( $id, $data = array() ) {
+		return $this->http->post( "wp-json/dlm/v1/generators/{$id}/generate", $data );
 	}
 
 }
