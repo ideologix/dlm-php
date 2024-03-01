@@ -6,7 +6,7 @@
 The PHP package can be imported either with Composer or manually with including the `autoload.php` file:
 
 ```shell
-composer install ideologix/dlm-php
+composer require ideologix/dlm-php
 ```
 
 ## How to use
